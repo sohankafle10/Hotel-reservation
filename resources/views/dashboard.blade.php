@@ -50,7 +50,7 @@
         <div class="flex items-center justify-between bg-gradient-to-r from-yellow-500 to-yellow-700 text-white p-6 rounded-lg shadow-md hover:shadow-lg">
             <div>
                 <h2 class="text-2xl font-semibold">Number of Staff</h2>
-                <p class="text-lg mt-2">Total: <span class="font-bold"></span></p>
+                <p class="text-lg mt-2">Total: <span class="font-bold">{{ $staff }}</span></p>
             </div>
             <i class="fas fa-users text-4xl"></i>
         </div>
@@ -59,7 +59,7 @@
         <div class="flex items-center justify-between bg-gradient-to-r from-pink-500 to-pink-700 text-white p-6 rounded-lg shadow-md hover:shadow-lg">
             <div>
                 <h2 class="text-2xl font-semibold">Users</h2>
-                <p class="text-lg mt-2">Total: <span class="font-bold"></span></p>
+                <p class="text-lg mt-2">Total: <span class="font-bold">{{$users}}</span></p>
             </div>
             <i class="fas fa-users text-4xl"></i>
         </div>
