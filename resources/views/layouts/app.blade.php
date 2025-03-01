@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-3 rounded-lg text-base font-medium transition hover:bg-gray-200">
+                        <a href="{{route('room.index')}}" class="flex items-center p-3 rounded-lg text-base font-medium transition hover:bg-gray-200">
                             <i class="fas fa-boxes mr-2"></i> Rooms
                         </a>
                     </li>
