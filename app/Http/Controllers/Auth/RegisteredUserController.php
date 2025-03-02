@@ -31,16 +31,26 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                'unique:'.User::class,
+                'regex:/^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/'
+            ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-         
-          'phone' => ['required', 'string', 'max:255'],
-            // address
-            'address' => ['required', 'string', 'max:255'],
-
-
-
+            'phone' => 'required|string|max:15',
+            'profilepicture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'address' => 'required|string|max:255',
         ]);
+
+        if ($request->hasFile('profilepicture')) {
+            $file = $request->file('profilepicture');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/profilepictures'), $filename);
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -48,6 +58,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'address' => $request->address,
+            'profilepicture' => isset($filename) ? $filename : null,
         ]);
 
         event(new Registered($user));

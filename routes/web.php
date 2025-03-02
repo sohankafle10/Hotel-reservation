@@ -7,10 +7,15 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PagesController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/',[PagesController::class,'index'])->name('home');
+
+Route::middleware(['auth','admin'])->group(function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -49,6 +54,6 @@ Route::delete('/user/destroy/{id}', [UserController::class, 'destroy'])->name('u
 Route::resource('users', UserController::class);
 Route::resource('users', UserController::class);
 Route::get('user/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-
+});
 
 require_once __DIR__.'/auth.php';
