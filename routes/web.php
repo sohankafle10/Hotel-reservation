@@ -8,12 +8,21 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\BooknowController;
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/',[PagesController::class,'index'])->name('home');
+
+
+
+
+Route::post('booknow/store',[BooknowController::class,'store'])->name('cart.store');
+Route::get('booknow',[BooknowController::class,'index'])->name('booknow');
+
 
 Route::middleware(['auth','admin'])->group(function () {
 
@@ -25,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 
 
 

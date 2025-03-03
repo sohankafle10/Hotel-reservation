@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-3 rounded-lg text-base font-medium transition hover:bg-gray-200">
+                        <a href="{{route('reservation.index')}}" class="flex items-center p-3 rounded-lg text-base font-medium transition hover:bg-gray-200">
                             <i class="fas fa-shopping-cart mr-2"></i> Reservation
                         </a>
                     </li>
