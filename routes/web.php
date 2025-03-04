@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\BooknowController;
 use App\Http\Controllers\ReservationController;
+use App\Models\Reservation;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,7 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+Route::get('/reservations', [Reservation::class, 'index'])->name('reservation.index');
+
+Route::resource('reservations', ReservationController::class);
+
 
 
 
